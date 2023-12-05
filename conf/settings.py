@@ -49,6 +49,7 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
+    'apps.tokens',
     'apps.accounts',
     'apps.airdrops',
     'apps.giveaways',
@@ -60,7 +61,6 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 WSGI_APPLICATION = 'conf.wsgi.application'
 
 ROOT_URLCONF = 'conf.urls'
-
 
 # ==============================================================================
 # MIDDLEWARE SETTINGS
@@ -79,7 +79,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'apps.webhooks.middlewares.CircleAPINotificationMiddleware',
 ]
-
 
 # ==============================================================================
 # TEMPLATES SETTINGS
@@ -100,12 +99,10 @@ TEMPLATES = [
     },
 ]
 
-
 # ==============================================================================
 # STORAGES SETTINGS
 # ==============================================================================
 STORAGES = {'staticfiles': {'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage'}}
-
 
 # ==============================================================================
 # DATABASES SETTINGS
@@ -115,7 +112,6 @@ STORAGES = {'staticfiles': {'BACKEND': 'whitenoise.storage.CompressedManifestSta
 DATABASES = {'default': env.db('DATABASE_URL')}
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 # ==============================================================================
 # PASSWORD VALIDATION SETTINGS
@@ -140,17 +136,13 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # ==============================================================================
 # STATIC FILES SETTINGS
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 # ==============================================================================
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [BASE_DIR / 'static']
-
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-
 
 # ==============================================================================
 # SECURITY
@@ -167,7 +159,6 @@ SECURE_BROWSER_XSS_FILTER = True
 
 X_FRAME_OPTIONS = 'DENY'
 
-
 # ==============================================================================
 # DJANGO REST FRAMEWORK SETTINGS
 # ==============================================================================
@@ -180,12 +171,10 @@ REST_FRAMEWORK = {
 if DEBUG:
     REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'].append('rest_framework.renderers.BrowsableAPIRenderer')
 
-
 # ==============================================================================
 # DJANGO CORS HEADERS SETTINGS
 # ==============================================================================
 CORS_ALLOW_ALL_ORIGINS = True
-
 
 # ==============================================================================
 # HUEY SETTINGS
@@ -194,6 +183,13 @@ connection_pool = ConnectionPool.from_url(env.str('HUEY_REDIS_URL'))
 connection_pool.max_connections = env.int('HUEY_STORAGE_MAX_CONNECTIONS', default=5)
 HUEY = RedisHuey(name=__name__, immediate=env.bool('HUEY_IMMEDIATE'), connection_pool=connection_pool)
 
+# ==============================================================================
+# EVM SETTINGS
+# ==============================================================================
+RPC_ENDPOINTS = env.list('RPC_ENDPOINTS')
+AIRDROP_CONTRACT_ADDRESS = env.str('AIRDROP_CONTRACT_ADDRESS')
+MULTICALL_CONTRACT_ADDRESS = env.str('MULTICALL_CONTRACT_ADDRESS')
+AIRDROP_CONTRACT_CREATION_BLOCK = env.int('AIRDROP_CONTRACT_CREATION_BLOCK')
 
 # ==============================================================================
 # LOGGING SETTINGS

@@ -1,6 +1,6 @@
 from django.db import models
 
-from common.models import UUIDModel, TimestampedModel
+from common.models import TimestampedModel, UUIDModel
 
 
 class Account(UUIDModel, TimestampedModel, models.Model):

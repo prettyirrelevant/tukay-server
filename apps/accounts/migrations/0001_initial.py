@@ -25,21 +25,21 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created_at",
-                    models.DateTimeField(
-                        auto_now_add=True, db_index=True, verbose_name="created at"
-                    ),
+                    models.DateTimeField(auto_now_add=True,
+                                         db_index=True,
+                                         verbose_name="created at"),
                 ),
                 (
                     "updated_at",
-                    models.DateTimeField(
-                        auto_now=True, db_index=True, verbose_name="updated at"
-                    ),
+                    models.DateTimeField(auto_now=True,
+                                         db_index=True,
+                                         verbose_name="updated at"),
                 ),
                 (
                     "address",
-                    models.CharField(
-                        max_length=42, unique=True, verbose_name="address"
-                    ),
+                    models.CharField(max_length=42,
+                                     unique=True,
+                                     verbose_name="address"),
                 ),
             ],
             options={

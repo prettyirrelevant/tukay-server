@@ -4,7 +4,7 @@ from django.db import models
 
 
 class UUIDModel(models.Model):
-    id = models.UUIDField(
+    id = models.UUIDField(  # noqa: A003
         'id',
         primary_key=True,
         editable=False,

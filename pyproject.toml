@@ -27,3 +27,105 @@ black = "^23.11.0"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 119
+skip-string-normalization = true
+target-version = ['py39']
+exclude = '''
+  /(
+    | \.eggs
+    | \.git
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+    | migrations
+  )/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 119
+force_grid_wrap = 0
+known_apps = "apps"
+multi_line_output = 3
+use_parentheses = true
+known_common = "common"
+known_django = "django"
+combine_as_imports = true
+lines_between_sections = 1
+known_services = "services"
+include_trailing_comma = true
+known_rest_framework = "rest_framework"
+skip_glob = ["**/.venv/*", "**/migrations/*"]
+sections = ["FUTURE", "STDLIB", "THIRDPARTY","DJANGO", "REST_FRAMEWORK", "FIRSTPARTY", "COMMON", "SERVICES", "APPS", "LOCALFOLDER"]
+
+[tool.ruff]
+preview = true
+line-length = 119
+select = [
+    "E",
+    "F",
+    "W",
+    "C90",
+    "C4",
+    "N",
+    "B",
+    "G",
+    "DJ",
+    "ISC",
+    "ICN",
+    "T10",
+    "T20",
+    "UP",
+    "YTT",
+    "S",
+    "BLE",
+    "FBT",
+    "A",
+    "Q",
+    "ERA",
+    "PGH",
+    "RET",
+    "SIM",
+    "TID",
+    "ARG",
+    "PL",
+    "PIE",
+    "PYI",
+    "COM",
+    "DTZ",
+    "EXE",
+    "INP",
+    "TCH",
+    "PTH",
+    "INT",
+    "TRY",
+    "RSE",
+    "SLF",
+    "RUF",
+    "FURB",
+    "PERF",
+    "FLY",
+    "TRIO",
+    "TRY",
+    "LOG",
+    "FIX",
+    "TD",
+    "ERA",
+]
+exclude = ["migrations", ".venv"]
+ignore = ["TRY003", "G004", "TRY301", "DJ008", "PLR6301", "ARG002", "ARG001", "COM812", "ISC001", "ERA001", "SLF001", "RUF012", "PLR2004"]
+
+[tool.ruff.lint.flake8-quotes]
+inline-quotes = "single"
+
+[tool.ruff.per-file-ignores]
+"**/test_**.py" = ["S101"]
+"conf/settings.py" = ["E402"]
+"manage.py" = ["PLC0415"]
