@@ -3,6 +3,7 @@ import json
 from django.db.models import Q
 
 from rest_framework import generics, status
+from rest_framework.views import APIView
 
 from common.responses import error_response, success_response
 
@@ -33,17 +34,22 @@ class AirdropClaimsAPIView(generics.ListAPIView):
         return success_response(data=response.data, status_code=response.status_code)
 
 
-class AirdropLeavesAPIView(generics.RetrieveAPIView):
-    lookup_field = 'id'
-    serializer_class = AirdropSerializer
+class AirdropLeavesAPIView(APIView):
     queryset = Airdrop.objects.get_queryset()
 
-    def retrieve(self, request, *args, **kwargs):
-        response = super().retrieve(request, *args, **kwargs)
-        return success_response(data=response.data, status_code=response.status_code)
+    def get(self, request, *args, **kwargs):
+        try:
+            airdrop = self.queryset.get(Q(contract_index=int(self.kwargs['id'])) | Q(id=self.kwargs['id']))
+        except Airdrop.DoesNotExist as e:
+            return error_response(
+                errors=[],
+                message=str(e),
+                status_code=status.HTTP_404_NOT_FOUND,
+            )
+        return success_response(data={'leaves': airdrop.merkle_leaves}, status_code=status.HTTP_200_OK)
 
 
-class UploadAirdropLeavesAPIView(generics.GenericAPIView):
+class UploadAirdropLeavesAPIView(APIView):
     def post(self, request, *args, **kwargs):
         try:
             airdrop = Airdrop.objects.get(contract_index=self.kwargs['id'])

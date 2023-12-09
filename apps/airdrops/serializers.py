@@ -5,8 +5,9 @@ from eth_utils import to_checksum_address
 from rest_framework import serializers
 
 from apps.accounts.serializers import AccountSerializer
-from apps.airdrops.models import Airdrop, Claim
 from apps.tokens.serializers import TokenSerializer
+
+from .models import Airdrop, Claim
 
 
 class AirdropSerializer(serializers.ModelSerializer):
@@ -44,14 +45,15 @@ class AirdropSerializer(serializers.ModelSerializer):
             'updated_at',
             'merkle_root',
             'tx_reference',
-            'claim_status,' 'actual_claims',
+            'claim_status',
+            'actual_claims',
             'contract_index',
             'expected_claims',
         )
 
 
 class ClaimSerializer(serializers.ModelSerializer):
-    owner = AccountSerializer(read_only=True)
+    account = AccountSerializer(read_only=True)
 
     class Meta:
         model = Claim

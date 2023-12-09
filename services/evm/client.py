@@ -76,7 +76,7 @@ class EVMClient:
         return w3.eth.contract(address=address, abi=abi_content)
 
     @query_all_nodes()
-    def get_events(self, w3, topics, to_block, from_block, address):  # noqa: PLR0913
+    def get_events(self, w3, topics, to_block, from_block, address):  # noqa: PLR0913 PLR0917
         filter_params = {
             'topics': [topics],
             'address': address,

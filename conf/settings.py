@@ -44,6 +44,7 @@ if DEBUG:
     DJANGO_APPS.insert(5, 'whitenoise.runserver_nostatic')
 
 THIRD_PARTY_APPS = [
+    'drf_yasg',
     'rest_framework',
     'huey.contrib.djhuey',
 ]
@@ -169,6 +170,7 @@ CACHES = {'default': env.cache()}
 # DJANGO REST FRAMEWORK SETTINGS
 # ==============================================================================
 REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [],
     'EXCEPTION_HANDLER': 'common.exceptions.custom_exception_handler',
     'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.AllowAny'],
     'DEFAULT_RENDERER_CLASSES': ['rest_framework.renderers.JSONRenderer'],

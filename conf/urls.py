@@ -22,10 +22,11 @@ from common import views
 
 urlpatterns = [
     path('', views.ping_view, name='ping-endpoint'),
-    path('api/accounts/', include('apps.accounts.urls')),
     path('api/airdrops/', include('apps.airdrops.urls')),
+    path('api/accounts/', include('apps.accounts.urls')),
     path('api/giveaways/', include('apps.giveaways.urls')),
     path('api/crowdfunds/', include('apps.crowdfunds.urls')),
+    path('docs', views.schema_view.with_ui(), name='api-schema'),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
