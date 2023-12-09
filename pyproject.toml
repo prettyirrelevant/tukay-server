@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "tukay"
+name = "tukay-server"
 version = "0.1.0"
 description = ""
 authors = ["Isaac Adewumi <ienioladewumi@gmail.com>"]
@@ -17,6 +17,7 @@ redis = "^5.0.1"
 psycopg2-binary = "^2.9.9"
 whitenoise = "^6.6.0"
 django-environ = "^0.11.2"
+shortuuid = "^1.0.11"
 
 
 [tool.poetry.group.dev.dependencies]

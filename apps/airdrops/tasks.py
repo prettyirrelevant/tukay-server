@@ -18,7 +18,7 @@ from apps.tokens.models import Token
 logger = logging.getLogger(__name__)
 
 
-@db_periodic_task(crontab(minute='*/3'))
+@db_periodic_task(crontab(minute='*/1'))
 @lock_task('constantly-fetch-airdrop-contract-events')
 def fetch_airdrop_contract_events():
     client = EVMClient(rpc_endpoints=settings.RPC_ENDPOINTS)

@@ -77,7 +77,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'apps.webhooks.middlewares.CircleAPINotificationMiddleware',
 ]
 
 # ==============================================================================
@@ -160,6 +159,11 @@ SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = 'DENY'
 
 # ==============================================================================
+# CACHING
+# ==============================================================================
+CACHES = {'default': env.cache()}
+
+# ==============================================================================
 # DJANGO REST FRAMEWORK SETTINGS
 # ==============================================================================
 REST_FRAMEWORK = {
@@ -203,7 +207,7 @@ if not DEBUG:
         },
         'handlers': {
             'console': {
-                'level': 'DEBUG',
+                'level': 'INFO',
                 'class': 'logging.StreamHandler',
                 'formatter': 'verbose',
             }

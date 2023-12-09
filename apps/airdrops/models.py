@@ -1,9 +1,12 @@
+from shortuuid.django_fields import ShortUUIDField
+
 from django.db import models
 
-from common.models import TimestampedModel, UUIDModel
+from common.models import TimestampedModel
 
 
-class Airdrop(UUIDModel, TimestampedModel, models.Model):
+class Airdrop(TimestampedModel, models.Model):
+    id = ShortUUIDField(length=20, prefix='airdrop_', primary_key=True)  # noqa: A003
     name = models.CharField('name', max_length=50, blank=False)
     merkle_root = models.BinaryField('merkle_root', blank=False)
     amount = models.PositiveBigIntegerField('amount', blank=False)
@@ -28,7 +31,8 @@ class Airdrop(UUIDModel, TimestampedModel, models.Model):
     )
 
 
-class Claim(UUIDModel, TimestampedModel, models.Model):
+class Claim(TimestampedModel, models.Model):
+    id = ShortUUIDField(length=20, prefix='claim_', primary_key=True)  # noqa: A003
     account = models.ForeignKey(
         'accounts.Account',
         verbose_name='owner',

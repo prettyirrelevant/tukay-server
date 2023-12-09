@@ -1,18 +1,4 @@
-from uuid import uuid4
-
 from django.db import models
-
-
-class UUIDModel(models.Model):
-    id = models.UUIDField(  # noqa: A003
-        'id',
-        primary_key=True,
-        editable=False,
-        default=uuid4,
-    )
-
-    class Meta:
-        abstract = True
 
 
 class TimestampedModel(models.Model):

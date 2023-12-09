@@ -204,3 +204,5 @@ cython_debug/
 
 # Django static files
 staticfiles
+*.pyc
+media

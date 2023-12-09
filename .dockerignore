@@ -1,0 +1,6 @@
+fly.toml
+.git/
+*.sqlite3
+.venv
+.ruff_cache
+.DS_Store
