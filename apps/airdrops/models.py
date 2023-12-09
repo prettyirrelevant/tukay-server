@@ -10,6 +10,7 @@ class Airdrop(TimestampedModel, models.Model):
     name = models.CharField('name', max_length=50, blank=False)
     merkle_root = models.BinaryField('merkle_root', blank=False)
     amount = models.PositiveBigIntegerField('amount', blank=False)
+    merkle_leaves = models.JSONField('merkle_leaves', default=dict)
     expected_claims = models.PositiveBigIntegerField('expected claims', blank=False)
     contract_index = models.BigIntegerField('contract index', blank=False, unique=True)
     tx_reference = models.CharField('transaction reference', max_length=66, blank=False, unique=True)
