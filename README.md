@@ -2,7 +2,7 @@
 
 This project was intended for the Chainlink Constellation Hackathon(yeah, I cannot complete it lol). More about the hackathon can be found [here](https://constellation-hackathon.devpost.com/).
 
-It is an indexer built using Django Rest Framework. It moves from block to block listening for events emitted by certain contracts, parses the logs and stores them in our database which is served to the client(React SPA) via RESTful API.
+It is an indexer built using Django Rest Framework. It moves from block to block listening for events emitted by certain contracts, parse the logs and stores them in a database which is then served to a client(React SPA) via RESTful API.
 
 ## Features
 - [x] Index all events from the `Airdrop` contract
@@ -14,3 +14,6 @@ It is an indexer built using Django Rest Framework. It moves from block to block
 
 ## Status
 Incomplete.
+
+## Credits
+Project name was inspired by a discussion or trend that happened on Twitter.
