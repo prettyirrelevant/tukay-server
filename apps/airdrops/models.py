@@ -36,7 +36,7 @@ class Claim(TimestampedModel, models.Model):
     id = ShortUUIDField(length=20, prefix='claim_', primary_key=True)  # noqa: A003
     account = models.ForeignKey(
         'accounts.Account',
-        verbose_name='owner',
+        verbose_name='account',
         to_field='address',
         related_name='claimed_airdrops',
         blank=False,

@@ -12,24 +12,23 @@ from django.db import transaction
 from services.evm.client import EVMClient
 
 from apps.accounts.models import Account
+from apps.airdrops.models import Airdrop, Claim
 from apps.tokens.models import Token
-
-from .models import Airdrop, Claim
 
 logger = logging.getLogger(__name__)
 
 
 @db_periodic_task(crontab(minute='*/1'))
-@lock_task('constantly-fetch-airdrop-contract-events')
-def fetch_airdrop_contract_events():
+@lock_task('constantly-fetch-giveaway-contract-events')
+def fetch_giveaway_contract_events():
     client = EVMClient(rpc_endpoints=settings.RPC_ENDPOINTS)
-    last_queried_block = cache.get('airdrop:last-queried-block') or settings.AIRDROP_CONTRACT_CREATION_BLOCK
+    last_queried_block = cache.get('giveaway:last-queried-block') or settings.AIRDROP_CONTRACT_CREATION_BLOCK
     latest_block = client.get_latest_block()
     events = client.query_contract_events(
-        name='Airdrop',
+        name='Giveaway',
         to_block=latest_block,
         from_block=last_queried_block,
-        address=settings.AIRDROP_CONTRACT_ADDRESS,
+        address=settings.GIVEAWAY_CONTRACT_ADDRESS,
     )
     try:
         with transaction.atomic():

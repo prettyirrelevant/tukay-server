@@ -85,7 +85,7 @@ class EVMClient:
         }
         return w3.eth.get_logs(filter_params)
 
-    def query_contract_events(self, name: Literal['Airdrop', 'ERC20'], address, from_block, to_block):
+    def query_contract_events(self, name: Literal['Airdrop', 'ERC20', 'Giveaway'], address, from_block, to_block):
         contract = self.get_contract(name, address)
         log_topics_to_event_decoders = {event_abi_to_log_topic(e._get_event_abi()): e() for e in contract.events}
         events = self.get_events(

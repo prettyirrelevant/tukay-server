@@ -195,8 +195,10 @@ HUEY = RedisHuey(name=__name__, immediate=env.bool('HUEY_IMMEDIATE'), connection
 # ==============================================================================
 RPC_ENDPOINTS = env.list('RPC_ENDPOINTS')
 AIRDROP_CONTRACT_ADDRESS = env.str('AIRDROP_CONTRACT_ADDRESS')
+GIVEAWAY_CONTRACT_ADDRESS = env.str('GIVEAWAY_CONTRACT_ADDRESS')
 MULTICALL_CONTRACT_ADDRESS = env.str('MULTICALL_CONTRACT_ADDRESS')
 AIRDROP_CONTRACT_CREATION_BLOCK = env.int('AIRDROP_CONTRACT_CREATION_BLOCK')
+GIVEAWAY_CONTRACT_CREATION_BLOCK = env.int('GIVEAWAY_CONTRACT_CREATION_BLOCK')
 
 # ==============================================================================
 # LOGGING SETTINGS
